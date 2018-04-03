@@ -8,44 +8,63 @@
     <title>Ruleta</title>
 </head>
 <body>
-    <input id="btn" type="button" value="Girar" onclick="miRuleta.startAnimation();" />
-    <br/>
-    <br/>
-    <canvas id='canvas' height="400" width="400"></canvas>
+<input id="btn" type="button" value="Girar" onclick="firstWheel.startAnimation();" />
+<br/>
+<br/>
+<canvas id='canvas' height="400" width="400"></canvas>
 </body>
 <script>
+
     $('#btn').click(function(){
         $("#btn").prop( "disabled", true );
     });
-    var miRuleta= new Winwheel({
-        'numSegments': 5,
+
+    var firstWheel = new Winwheel({
+        'drawMode'     : 'image',    // drawMode must be set to image.
         'outerRadius': 170,
+        'numSegments'  : 5,          // The number of segments must be specified.
+        'imageOverlay' : true,       // Set imageOverlay to true to display the overlay.
+        'lineWidth'    : 4,          // Overlay uses wheel line width and stroke style so can set these
+        'strokeStyle'  : 'red',       // as desired to change appearance of the overlay.
         'segments':[
-            { 'fillStyle': '#f1c40f', 'text': 'iPhone X' },
-            { 'fillStyle': '#2ecc71', 'text': 'Samsung S9' },
-            { 'fillStyle': '#e67e22', 'text': 'Huawei p10' },
-            { 'fillStyle': '#e74c3c', 'text': 'LG V30s' },
-            { 'fillStyle': '#8e44ad', 'text': 'ZTE Axon M' },
+            {'text': '2' },
+            {'text': '3' },
+            {'text': '4' },
+            {'text': '5' },
+            {'text': '1' },
         ],
         'animation': {
             'type': 'spinToStop',
             'duration': 5,
-            'callbackFinished': 'Mensaje()',
-            'callbackAfter': 'dibujarIndicador()'
+            'callbackFinished': 'Message()',
+            'callbackAfter': 'indicator()'
         }
     });
 
-    function Mensaje() {
-        var SegmentoSeleccionado = miRuleta.getIndicatedSegment();
-        alert("Tu premio es: " + SegmentoSeleccionado.text + "!");
-        miRuleta.stopAnimation(false);
-        miRuleta.rotationAngle = 0;
-        miRuleta.draw();
-        dibujarIndicador();
+    // Create new image object in memory.
+    var firstImg = new Image();
+
+    // Create callback to execute once the image has finished loading.
+    firstImg.onload = function()
+    {
+        firstWheel.wheelImage = firstImg;    // Make wheelImage equal the loaded image object.
+        firstWheel.draw();                   // Also call draw function to render the wheel.
     }
-    dibujarIndicador();
-    function dibujarIndicador() {
-        var ctx = miRuleta.ctx;
+
+    // Set the image source, once complete this will trigger the onLoad callback (above).
+    firstImg.src = "assets/img/wheel_image.png";
+
+    function Message() {
+        var SegmentoSeleccionado = firstWheel.getIndicatedSegment();
+        alert("Tu premio es un: " + SegmentoSeleccionado.text + "!");
+        firstWheel.stopAnimation(false);
+        firstWheel.rotationAngle = 0;
+        firstWheel.draw();
+        indicator();
+    }
+    indicator();
+    function indicator() {
+        var ctx = firstWheel.ctx;
         ctx.strokeStyle = 'navy';
         ctx.fillStyle = 'black';
         ctx.lineWidth = 2;
