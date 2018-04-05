@@ -8,10 +8,15 @@
     <title>Ruleta</title>
 </head>
 <body>
-<input id="btn" type="button" value="Girar" onclick="firstWheel.startAnimation();" />
+<div align="center">
+    <input id="btn" type="button" value="Girar" onclick="firstWheel.startAnimation();"/>
+</div>
 <br/>
 <br/>
-<canvas id='canvas' height="400" width="400"></canvas>
+<div align="center">
+    <canvas id='canvas' height="400" width="400"></canvas>
+</div>
+
 </body>
 <script>
 
@@ -20,18 +25,20 @@
     });
 
     var firstWheel = new Winwheel({
+        'canvasId'     : 'canvas',
         'drawMode'     : 'image',    // drawMode must be set to image.
         'outerRadius': 170,
-        'numSegments'  : 5,          // The number of segments must be specified.
+        'numSegments'  : 6,          // The number of segments must be specified.
         'imageOverlay' : true,       // Set imageOverlay to true to display the overlay.
         'lineWidth'    : 4,          // Overlay uses wheel line width and stroke style so can set these
         'strokeStyle'  : 'red',       // as desired to change appearance of the overlay.
         'segments':[
-            {'text': '2' },
-            {'text': '3' },
-            {'text': '4' },
-            {'text': '5' },
-            {'text': '1' },
+            {'text': 'iPhoneX' },
+            {'text': 'Lo siento' },
+            {'text': 'iPhoneX' },
+            {'text': 'Lo siento' },
+            {'text': 'iPhoneX' },
+            {'text': 'lo siento' }
         ],
         'animation': {
             'type': 'spinToStop',
@@ -41,20 +48,9 @@
         }
     });
 
-    // Create new image object in memory.
-    var firstImg = new Image();
-
-    // Create callback to execute once the image has finished loading.
-    firstImg.onload = function()
-    {
-        firstWheel.wheelImage = firstImg;    // Make wheelImage equal the loaded image object.
-        firstWheel.draw();                   // Also call draw function to render the wheel.
-    }
-
-    // Set the image source, once complete this will trigger the onLoad callback (above).
-    firstImg.src = "assets/img/wheel_image.png";
 
     function Message() {
+
         var SegmentoSeleccionado = firstWheel.getIndicatedSegment();
         alert("Tu premio es un: " + SegmentoSeleccionado.text + "!");
         firstWheel.stopAnimation(false);
@@ -62,9 +58,26 @@
         firstWheel.draw();
         indicator();
     }
-    indicator();
+
+    // Create new image object in memory.
+    var firstImg = new Image();
+
+    // Create callback to execute once the image has finished loading.
+    firstImg.onload = function()
+    {
+        firstWheel.wheelImage = firstImg;    // Make wheelImage equal the loaded image object.
+        // Set the image source, once complete this will trigger the onLoad callback (above).
+        firstWheel.draw(); // Also call draw function to render the wheel.
+        indicator();
+    };
+
+    firstImg.src = "assets/img/wheel_image.png";
+
+
+    var ctx = firstWheel.ctx;
+
     function indicator() {
-        var ctx = firstWheel.ctx;
+        ctx.save();
         ctx.strokeStyle = 'navy';
         ctx.fillStyle = 'black';
         ctx.lineWidth = 2;
@@ -75,6 +88,13 @@
         ctx.lineTo(171, 0);
         ctx.stroke();
         ctx.fill();
+        ctx.restore();
+
+//        alert("indicator");
     }
+
+
+
+
 </script>
 </html>
