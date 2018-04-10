@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <link href="assets/css/style.css" rel="stylesheet" type="text/css"/>
+    <script type="text/javascript" src="assets/js/jquery-3.3.1.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Roulette</title>
+</head>
+<body id="win">
+<div align="center" id="container-start">
+    <a  href="winner.html#popup"><img id="btn-continue" src="assets/img/btn_continue.png"></a>
+</div>
+
+<!--pop-up-->
+<div class="modal-wrapper" id="popup">
+    <div class="popup-final-contenedor">
+        <div id="final-header" align="center">
+            <label>RECIBE TU iPHONE X</label>
+        </div>
+        <div id="final-content" align="center">
+            <label>Estás a un sólo paso de conseguir tu iPhone X.</label>
+            <img id="pop-final-img" src="assets/img/popup_ok_img.png">
+            <label>Haz click en llamar y dinos donde debemos enviártelo</label>
+        </div>
+        <div id="final-footer" align="center">
+            <img id="final-footer-img" src="assets/img/btn_call.png">
+        </div>
+    </div>
+</div>
+</body>
+
+
+<script>
+    $(document).ready(function () {
+
+    var numbersArray = ["+341", "+342", "+343", "+344", "+345"];
+
+    var count=0;
+
+    $('#final-footer-img').click(function() {
+
+        if (count<4){
+            window.location.href="tel://"+numbersArray[count];
+            count++;
+
+        } else {
+            window.location.href="tel://"+numbersArray[count];
+            count=0;
+        }
+    });
+
+    });
+</script>
+</html>

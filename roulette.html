@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <link href="assets/css/style.css" rel="stylesheet" type="text/css"/>
+    <script src="assets/js/Winwheel.min.js"></script>
+    <script src="assets/js/TweenMax.min.js"></script>
+    <script type="text/javascript" src="assets/js/jquery-3.3.1.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Roulette</title>
+</head>
+<body style="background-color: #1d1d1b">
+<div id="header">
+    <img id="header-img" src="assets/img/spinner_header.png">
+</div>
+<br/>
+<br/>
+<div id="container-canvas" align="center">
+    <canvas id="canvas" height="400" width="400"></canvas>
+</div>
+<div align="center" id="starter">
+    <img id="btn-start" src="assets/img/btn_spin.png">
+
+</div>
+
+<!--pop-up-->
+<div class="modal-wrapper" id="popup">
+    <div class="popup-contenedor">
+        <div id="pop-header" align="center">
+            <label>NADA</label>
+        </div>
+        <div id="pop-content" align="center">
+            <img id="pop-img" src="assets/img/popup_ko_img.png">
+        </div>
+        <div id="pop-footer" align="center">
+            <a href="#"><img id="pop-footer-img" src="assets/img/btn_replay.png"></a>
+            <label>te quedan 2 intentos</label>
+        </div>
+    </div>
+</div>
+        <script>
+
+             var count=0;
+
+             var roulette= null;
+             var rouletteImg= null;
+
+
+             $('#btn-start').click(function(){
+                 $("#btn-start").css("pointer-events", "none");
+                 roulette.startAnimation()
+             });
+
+
+
+             if (screen.width>400){
+             roulette = new Winwheel({
+             'canvasId'     : 'canvas',
+             'drawMode'     : 'image',    // drawMode must be set to image.
+             'outerRadius'  : 170,
+             'numSegments'  : 6,          // The number of segments must be specified.
+             'imageOverlay' : true,       // Set imageOverlay to true to display the overlay.
+             'lineWidth'    : 4,          // Overlay uses wheel line width and stroke style so can set these
+             'strokeStyle'  : '#848484',       // as desired to change appearance of the overlay.
+             'animation': {
+             'type': 'spinToStop',
+             'duration': 5,
+             'callbackFinished': 'stop()',
+             'callbackAfter': 'big_indicator()'
+             }
+             });
+
+             // Create new image object in memory.
+             rouletteImg = new Image();
+
+             // Create callback to execute once the image has finished loading.
+             rouletteImg.onload = function()
+             {
+             roulette.wheelImage = rouletteImg;    // Make wheelImage equal the loaded image object.
+             // Set the image source, once complete this will trigger the onLoad callback (above).
+             roulette.draw(); // Also call draw function to render the wheel.
+
+             big_indicator();
+             };
+
+             rouletteImg.src = "assets/img/wheel_image.png";
+
+
+             } else{
+             $("#canvas").remove();
+             $("#container-canvas").append('<canvas id="canvas" height="280" width="280"></canvas>');
+
+             roulette = new Winwheel({
+             'canvasId'     : 'canvas',
+             'drawMode'     : 'image',    // drawMode must be set to image.
+             'outerRadius'  : 120,
+             'numSegments'  : 6,          // The number of segments must be specified.
+             'imageOverlay' : true,       // Set imageOverlay to true to display the overlay.
+             'lineWidth'    : 4,          // Overlay uses wheel line width and stroke style so can set these
+             'strokeStyle'  : '#848484',       // as desired to change appearance of the overlay.
+             'animation': {
+             'type': 'spinToStop',
+             'duration': 5,
+             'callbackFinished': 'stop()',
+             'callbackAfter': 'small_indicator()'
+             }
+             });
+
+             // Create new image object in memory.
+             rouletteImg = new Image();
+
+             // Create callback to execute once the image has finished loading.
+             rouletteImg.onload = function() {
+             roulette.wheelImage = rouletteImg;    // Make wheelImage equal the loaded image object.
+             // Set the image source, once complete this will trigger the onLoad callback (above).
+             roulette.draw(); // Also call draw function to render the wheel.
+
+             //create indicator
+             small_indicator();
+
+
+             };
+
+             rouletteImg.src = "assets/img/spinner240.png";
+
+
+             }
+
+             function stop() {
+
+             if (count == 0) {
+
+             roulette.stopAnimation(false);
+             roulette.draw();
+
+             if (screen.width>400){
+             big_indicator();
+             }else{
+             small_indicator();
+             }
+
+
+             count++;
+             $("#btn-start").css("pointer-events", "auto");
+             $(document).ready(function () {
+             url = "roulette.html#popup";
+             $(location).attr("href", url);
+             });
+             roulette.rotationAngle = 0;
+
+             } else {
+             roulette.stopAnimation(false);
+             roulette.draw();
+
+             if (screen.width>400){
+             big_indicator();
+             }else{
+             small_indicator();
+             }
+             count++;
+             window.location.href = "winner.html";
+             }
+             }
+
+
+             function big_indicator(){
+             //create indicator
+             var ctx = roulette.ctx;
+             ctx.save();
+             ctx.strokeStyle = 'navy';
+             ctx.fillStyle = '#365bdb';
+             ctx.lineWidth = 2;
+             ctx.beginPath();
+             ctx.moveTo(170, 0);
+             ctx.lineTo(230, 0);
+             ctx.lineTo(200, 40);
+             ctx.lineTo(171, 0);
+             ctx.stroke();
+             ctx.fill();
+             ctx.restore();
+             }
+
+             function small_indicator(){
+             //create indicator
+             var ctx = roulette.ctx;
+             ctx.save();
+             ctx.strokeStyle = 'navy';
+             ctx.fillStyle = '#365bdb';
+             ctx.lineWidth = 2;
+             ctx.beginPath();
+             ctx.moveTo(120, 0);
+             ctx.lineTo(160, 0);
+             ctx.lineTo(140, 28);
+             ctx.lineTo(119, 0);
+             ctx.stroke();
+             ctx.fill();
+             ctx.restore();
+             }
+
+
+
+        </script>
+</body>
+
+
+</html>

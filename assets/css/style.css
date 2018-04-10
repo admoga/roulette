@@ -1,0 +1,215 @@
+@font-face {
+    font-family: OpenSans_Bold;
+    src: url(../fonts/OpenSans-Bold.ttf);
+}
+
+@font-face {
+    font-family: OpenSans_ExtraBold;
+    src: url(../fonts/OpenSans-ExtraBold.ttf);
+}
+
+@font-face {
+    font-family: OpenSans_Regular;
+    src: url(../fonts/OpenSans-Regular.ttf);
+}
+
+html, body{
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+    margin: 0;
+    overflow-y: visible;
+}
+
+#cover{
+    background-image: url("/assets/img/splash_bg.jpg");
+    background-size: 100% 100%;
+}
+
+#container-canvas{
+    float: left;
+    width: 100%;
+}
+
+#header{
+    float: left;
+    width: 100%;
+}
+
+#header img{
+    float: left;
+    width: 100%;
+}
+
+#btn-continue{
+    width: 60%;
+    margin-bottom: 5px;
+}
+
+#starter{
+    text-align: center;
+    float: left;
+    width: 100%;
+}
+
+#container-start{
+    text-align: center;
+    width: 100%;
+    bottom: 0;
+    display: block;
+    position: fixed;
+}
+
+#start {
+    bottom: 0;
+    width: 80%;
+
+}
+
+#popup {
+    visibility: hidden;
+    opacity: 0;
+    margin-top: -300px;
+}
+
+#popup:target {
+    visibility:visible;
+    opacity: 1;
+    background-color: rgba(0,0,0,0.8);
+    position: fixed;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    margin:0;
+    z-index: 999;
+    transition:all 1s;
+}
+
+#pop-img{
+    max-height: 95%;
+    max-width: 80%;
+}
+
+#pop-footer label{
+    display: block;
+}
+
+#pop-footer-img{
+    width: 90%;
+    margin-bottom: 10px;
+}
+
+.popup-contenedor {
+    position: relative;
+    margin:35% auto auto auto;
+    background-color: #e7e7e7;
+    background-size: 100% 100%;
+    color:#333;
+    border-radius: 3px;
+    width:70%;
+    height: 60%;
+}
+
+#pop-header label{
+
+}
+
+#popup-cerrar {
+    position: absolute;
+    bottom: 22%;
+}
+
+#pop-header{
+    height: 15%;
+    float: left;
+    width: 100%;
+    font-size: 25px;
+    font-family: OpenSans_ExtraBold;
+    color: #365bdb;
+    background-color: white;
+}
+
+#pop-content{
+    height: 50%;
+    width: 100%;
+    float: left;
+}
+
+#pop-footer{
+    height: 35%;
+    width: 100%;
+    float: left;
+}
+
+#win{
+    background-image: url("/assets/img/success_bg.jpg");
+    background-size: 100% 100%;
+}
+
+#final-header{
+    height: 15%;
+    float: left;
+    width: 100%;
+    font-size: 25px;
+    font-family: OpenSans_ExtraBold;
+    color: #365bdb;
+    background-color: white;
+}
+
+#final-content{
+    height: 65%;
+    width: 100%;
+    float: left;
+}
+
+#final-footer{
+    height: 20%;
+    width: 100%;
+    float: left;
+}
+
+#final-content label{
+    display: block;
+}
+
+#final-footer-img{
+    width: 85%;
+    margin-bottom: 0;
+    max-height: 80%;
+    cursor: pointer;
+}
+
+.popup-final-contenedor{
+    position: relative;
+    margin: 20% auto auto auto;
+    background-color: #e7e7e7;
+    background-size: 100% 100%;
+    color:#333;
+    border-radius: 3px;
+    width:70%;
+    height: 75%;
+}
+
+#pop-final-img {
+    max-height: 65%;
+    max-width: 80%;
+}
+
+
+@media (max-height: 380px){
+    #final-header{
+        font-size: 18px;
+        font-family: OpenSans_ExtraBold;
+    }
+}
+
+@media (max-width: 380px){
+    #final-header{
+        font-size: 18px;
+        font-family: OpenSans_ExtraBold;
+    }
+    #final-content label{
+        font-size: 12px;
+    }
+}
