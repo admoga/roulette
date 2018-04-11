@@ -27,7 +27,7 @@ html, body{
 }
 
 #cover{
-    background-image: url("/assets/img/splash_bg.jpg");
+    background-image: url("../img/splash_bg.jpg");
     background-size: 100% 100%;
 }
 
@@ -84,6 +84,7 @@ html, body{
     visibility: hidden;
     opacity: 0;
     margin-top: -300px;
+    overflow-y: visible;
 }
 
 #popup:target {
@@ -157,7 +158,7 @@ html, body{
 }
 
 #win{
-    background-image: url("/assets/img/success_bg.jpg");
+    background-image: url("../img/success_bg.jpg");
     background-size: 100% 100%;
 }
 
