@@ -99,6 +99,7 @@ html, body{
     margin:0;
     z-index: 999;
     transition:all 1s;
+    overflow-y: scroll;
 }
 
 #pop-img{
@@ -166,10 +167,10 @@ html, body{
     height: 10%;
     float: left;
     width: 100%;
-    font-size: 25px;
+    font-size: 23px;
     font-family: OpenSans_ExtraBold;
     color: #365bdb;
-    background-color: white;
+    /*background-color: white;*/
 }
 
 #final-content{
@@ -227,12 +228,49 @@ html, body{
     }
 }
 
-@media (max-width: 380px){
+@media (max-width: 340px){
     #final-header{
         font-size: 18px;
         font-family: OpenSans_ExtraBold;
     }
     #final-content label{
         font-size: 10px;
+    }
+}
+
+@media (min-width: 350px) and (max-height: 600px){
+    #pop-footer-img{
+        width: 40%;
+        height: 50%;
+    }
+    #final-footer-img{
+        width: 40%;
+
+    }
+}
+
+@media (max-width: 263px){
+    #final-header a{
+        font-size: 12px;
+    }
+}
+
+@media (min-width: 420px) and (max-height: 550px){
+    #start{
+        width: 50%;
+    }
+    #btn-continue{
+        height: 50px;
+        width: 40%;
+    }
+
+}
+
+@media (min-width: 500px) {
+    .popup-contenedor {
+        margin:15% auto auto auto;
+    }
+    .popup-final-contenedor{
+        margin: 7% auto auto auto;
     }
 }
