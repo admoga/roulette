@@ -21,6 +21,11 @@ html, body{
     overflow-y: visible;
 }
 
+#roulette-container{
+    /*height: 100%;*/
+    overflow-y: hidden;
+}
+
 #cover{
     background-image: url("/assets/img/splash_bg.jpg");
     background-size: 100% 100%;
@@ -60,10 +65,19 @@ html, body{
     position: fixed;
 }
 
+#roulette-container{
+
+}
+
 #start {
     bottom: 0;
     width: 80%;
 
+}
+
+#btn-start{
+    bottom: 0;
+    width: 80%;
 }
 
 #popup {
@@ -148,7 +162,7 @@ html, body{
 }
 
 #final-header{
-    height: 15%;
+    height: 10%;
     float: left;
     width: 100%;
     font-size: 25px;
@@ -158,7 +172,7 @@ html, body{
 }
 
 #final-content{
-    height: 65%;
+    height: 70%;
     width: 100%;
     float: left;
 }
@@ -196,6 +210,14 @@ html, body{
     max-width: 80%;
 }
 
+#final-p-1{
+    font-family: OpenSans_Regular;
+}
+
+#final-p-2{
+    font-family: OpenSans_Bold;
+}
+
 
 @media (max-height: 380px){
     #final-header{
@@ -210,6 +232,6 @@ html, body{
         font-family: OpenSans_ExtraBold;
     }
     #final-content label{
-        font-size: 12px;
+        font-size: 10px;
     }
 }
